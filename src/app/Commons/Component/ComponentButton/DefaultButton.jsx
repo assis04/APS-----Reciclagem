@@ -10,7 +10,7 @@ const DefaultaButton = ({
     widthButton = '200px',
     colorText = 'rgba(0, 57, 110, 1)',
     backgroundColor = ' rgba(255,255,255)',
-    hoverBackgroundColor = 'rgba(8, 214, 111, 0.71)',
+    hoverBackgroundColor = '#7ed957',
 }) => {
     return (
         <>

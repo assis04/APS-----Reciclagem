@@ -93,7 +93,7 @@ const LoginPage = () => {
                         <Box
                             component="img"
                             alt="Imagem Médica"
-                            src="/loginDoctor.png"
+                            src="/TracaReutilizavel.png"
                             sx={{
                                 height: 'auto',
                                 width: '100%',
@@ -110,7 +110,7 @@ const LoginPage = () => {
                                 p: 4,
                                 boxShadow: 10,
                                 borderRadius: 3,
-                                background: 'rgba(54, 116, 181, 1)',
+                                background: '#00bf63',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 margin: '0 auto',
@@ -192,7 +192,7 @@ const LoginPage = () => {
                                         <Link
                                             component="button"
                                             onClick={goToRegister}
-                                            sx={{ color: 'rgba(83, 182, 239, 1)', fontWeight: 'bold', pl: 1 }}
+                                            sx={{ color: '#7ed957', fontWeight: 'bold', pl: 1 }}
                                         >
                                             Registre-se
                                         </Link>
@@ -204,7 +204,7 @@ const LoginPage = () => {
                                         <Link
                                             component="button"
                                             onClick={goToRecoveryPassword}
-                                            sx={{ color: 'rgba(83, 182, 239, 1)', fontWeight: 'bold' }}
+                                            sx={{ color: '#7ed957', fontWeight: 'bold' }}
                                         >
                                             Esqueceu sua senha?
                                         </Link>
