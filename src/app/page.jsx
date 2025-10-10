@@ -83,7 +83,7 @@ const LoginPage = () => {
                     justifyContent: 'center',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    backgroundImage: 'url("/BackgroundAPS.png")',
+                    backgroundImage: 'url("/BackgroundAPS.svg")',
                     position: 'relative', // necessário para overlay funcionar
                 }}
             >
