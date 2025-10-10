@@ -83,11 +83,11 @@ const LoginPage = () => {
                     justifyContent: 'center',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    backgroundImage: 'url("/FundoLogin.png")',
+                    backgroundImage: 'url("/BackgroundAPS.svg")',
                     position: 'relative', // necessário para overlay funcionar
                 }}
             >
-                <Grid container spacing={0} alignItems="center" justifyContent="center" sx={{ px: 2 }}>
+                <Grid container spacing={10} alignItems="center" justifyContent="center" sx={{ px: 2 }}>
                     {/* Imagem */}
                     <Grid item md={6} sx={{ display: { xs: 'none', md: 'block' } }}>
                         <Box
@@ -97,8 +97,8 @@ const LoginPage = () => {
                             sx={{
                                 height: 'auto',
                                 width: '100%',
-                                maxWidth: '500px',
-                                margin: '0 auto',
+                                maxWidth: '400px',
+                                margin: '0  auto',
                             }}
                         />
                     </Grid>
@@ -110,7 +110,7 @@ const LoginPage = () => {
                                 p: 4,
                                 boxShadow: 10,
                                 borderRadius: 3,
-                                background: '#00bf63',
+                                background: '#3d8d77',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 margin: '0 auto',
@@ -190,6 +190,7 @@ const LoginPage = () => {
                                     <Typography color="white">É novo por aqui?</Typography>
                                     <Typography>
                                         <Link
+                                            underline="none"
                                             component="button"
                                             onClick={goToRegister}
                                             sx={{ color: '#7ed957', fontWeight: 'bold', pl: 1 }}
@@ -202,6 +203,7 @@ const LoginPage = () => {
                                 <Stack justifyContent="center" alignItems={'center'} pt={2}>
                                     <Typography>
                                         <Link
+                                            underline="none"
                                             component="button"
                                             onClick={goToRecoveryPassword}
                                             sx={{ color: '#7ed957', fontWeight: 'bold' }}
