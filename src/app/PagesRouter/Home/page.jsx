@@ -1,6 +1,6 @@
 'use client'
 
-import HomePage from "@/app/Commons/Home/Home"
+import HomePage from "@/app/Commons/Login/Login"
 
 const HomeRouter = () => {
     return (

@@ -1,9 +1,9 @@
 'use client'
 
-import 'app/Login/globals.css'
+import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 
-import DefaultaButton from './Commons/Component/ComponentButton/DefaultButton'
+import DefaultaButton from '../Component/ComponentButton/DefaultButton.jsx'
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -16,7 +16,7 @@ import {
     Link,
     Stack,
 } from '@mui/material'
-import Loading from './Commons/Component/Loading/loading'
+import Loading from '../Component/Loading/loading'
 
 const LoginPage = () => {
     const router = useRouter()
@@ -247,4 +247,4 @@ const LoginPage = () => {
     )
 }
 
-export default HomePage
+export default LoginPage
