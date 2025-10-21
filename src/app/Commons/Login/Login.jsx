@@ -1,6 +1,6 @@
 'use client'
 
-import './globals.css'
+import '@/app/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import DefaultaButton from '../Component/ComponentButton/DefaultButton.jsx'
@@ -81,6 +81,7 @@ const LoginPage = () => {
 
         <>
             <header>
+                <h1>Olá</h1>
             </header>
             <main>
                 <Box

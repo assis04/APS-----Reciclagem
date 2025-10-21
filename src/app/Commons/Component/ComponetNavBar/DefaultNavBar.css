@@ -1,0 +1,16 @@
+nav{
+    background-color: #73946B;
+    border-radius: 0rem 0rem 2rem 0rem;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0rem 25vw 0rem 25vw;
+    max-height: 5rem;
+}
+img{
+    display: flex;
+}

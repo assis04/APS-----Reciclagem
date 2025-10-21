@@ -1,8 +1,8 @@
 'use client'
 
-import 'app/Login/globals.css'
+import '@/app/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-
+import DefaultNavBar from './Commons/Component/ComponetNavBar/DefaultNavBar'
 import DefaultaButton from './Commons/Component/ComponentButton/DefaultButton'
 
 import { useState } from 'react'
@@ -18,7 +18,7 @@ import {
 } from '@mui/material'
 import Loading from './Commons/Component/Loading/loading'
 
-const LoginPage = () => {
+const HomePage = () => {
     const router = useRouter()
 
     const [senha, setSenha] = useState('')
@@ -81,6 +81,7 @@ const LoginPage = () => {
 
         <>
             <header>
+                <DefaultNavBar/>
             </header>
             <main>
                 <Box
