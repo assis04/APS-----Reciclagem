@@ -88,7 +88,7 @@ const HomePage = () => {
                     sx={{
                         display: 'flex',
                         minWidth: '100vw',
-                        minHeight: '100vh',
+                        height: 'calc(100vh - 5rem)',
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundSize: 'cover',

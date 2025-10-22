@@ -2,7 +2,6 @@
 
 import '@/app/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-
 import DefaultaButton from '../Component/ComponentButton/DefaultButton.jsx'
 
 import { useState } from 'react'
@@ -17,6 +16,7 @@ import {
     Stack,
 } from '@mui/material'
 import Loading from '../Component/Loading/loading'
+import DefaultNavBar from '../Component/ComponetNavBar/DefaultNavBar.jsx'
 
 const LoginPage = () => {
     const router = useRouter()
@@ -81,14 +81,14 @@ const LoginPage = () => {
 
         <>
             <header>
-                <h1>Olá</h1>
+                <DefaultNavBar/>
             </header>
             <main>
                 <Box
                     sx={{
                         display: 'flex',
                         minWidth: '100vw',
-                        minHeight: '100vh',
+                        height: 'calc(100vh - 5rem)',
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundSize: 'cover',
