@@ -9,8 +9,9 @@ nav{
     align-items: center;
     justify-content: space-between;
     margin: 0rem 25vw 0rem 25vw;
-    max-height: 5rem;
+    height: 5rem;
 }
 img{
     display: flex;
+    height: 4rem;
 }
