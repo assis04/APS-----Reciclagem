@@ -65,6 +65,7 @@ const HomePage = () => {
   const goToRecoveryPassword = () => {
     setLoading(true);
 
+<<<<<<< HEAD
     setTimeout(() => {
       router.push("/PagesRouter/Password-recovery");
     }, 1000);
@@ -151,6 +152,25 @@ const HomePage = () => {
                   fontWeight="bold"
                   color="white"
                   mb={2}
+=======
+        <>
+            <header>
+                <DefaultNavBar/>
+            </header>
+            <main>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        minWidth: '100vw',
+                        height: 'calc(100vh - 5rem)',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundImage: 'url("/BackgroundAPS.svg")',
+                        position: 'relative', // necessário para overlay funcionar
+                    }}
+>>>>>>> ffbe1af93960154f807eae38a26b398dcb4a1f1e
                 >
                   Entrar
                 </Typography>
