@@ -11,7 +11,7 @@ nav{
     margin: 0rem 25vw 0rem 25vw;
     height: 5rem;
 }
-img{
+.logo{
     display: flex;
     height: 4rem;
 }

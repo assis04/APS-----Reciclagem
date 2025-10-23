@@ -65,7 +65,6 @@ const HomePage = () => {
   const goToRecoveryPassword = () => {
     setLoading(true);
 
-<<<<<<< HEAD
     setTimeout(() => {
       router.push("/PagesRouter/Password-recovery");
     }, 1000);
@@ -90,201 +89,58 @@ const HomePage = () => {
             position: "relative", // necessário para overlay funcionar
           }}
         >
-          <Grid container spacing={2}>
-            <Grid size={4}>
-              <Stack spacing={2}>
-                <Item>Column 1 - Row 1</Item>
-                <Item>Column 1 - Row 2</Item>
-                <Item>Column 1 - Row 3</Item>
-              </Stack>
-            </Grid>
-            <Grid size={8}>
-              <Item sx={{ height: "100%", boxSizing: "border-box" }}>
-                Column 2
-              </Item>
-            </Grid>
-          </Grid>
-
-          
           <Grid
             container
-            spacing={10}
-            alignItems="center"
-            justifyContent="center"
-            sx={{ px: 2 }}
+            justifyContent={"space-around"}
+            gap={3}
+            backgroundColor={"black"}
+            width={"60vw"}
           >
-            {/* Imagem */}
-            <Grid item md={6} sx={{ display: { xs: "none", md: "block" } }}>
-              <Box
-                component="img"
-                alt="Imagem Médica"
-                src="/TracaReutilizavel.png"
-                sx={{
-                  height: "auto",
-                  width: "100%",
-                  maxWidth: "400px",
-                  margin: "0  auto",
-                }}
-              />
-            </Grid>
-            {/* Card de Login */}
-            <Grid
-              item
-              xs={12}
-              md={6}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Box
-                sx={{
-                  p: 4,
-                  boxShadow: 10,
-                  borderRadius: 3,
-                  background: "#537D5D",
-                  display: "flex",
-                  flexDirection: "column",
-                  margin: "0 auto",
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  textAlign="center"
-                  fontWeight="bold"
-                  color="white"
-                  mb={2}
-=======
-        <>
-            <header>
-                <DefaultNavBar/>
-            </header>
-            <main>
+            <Grid size={5}>
+              <Stack spacing={2}>
                 <Box
-                    sx={{
-                        display: 'flex',
-                        minWidth: '100vw',
-                        height: 'calc(100vh - 5rem)',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundImage: 'url("/BackgroundAPS.svg")',
-                        position: 'relative', // necessário para overlay funcionar
-                    }}
->>>>>>> ffbe1af93960154f807eae38a26b398dcb4a1f1e
+                  sx={{
+                    backgroundColor: "aqua",
+                    height: "31rem",
+                    width: "30rem",
+                    borderRadius: "2rem",
+                    padding: "3rem",
+                  }}
                 >
-                  Entrar
-                </Typography>
-                <Stack width="100%">
-                  <Stack color="rgba(255, 255, 255, 1)" sx={{ opacity: 0.48 }}>
-                    Insira seu e-mail
-                  </Stack>
-                  <TextField
-                    fullWidth
-                    value={email}
-                    placeholder="Insira seu E-mail"
-                    onChange={(e) => setUsuario(e.target.value)}
-                    sx={{
-                      mb: "20px",
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: "10px",
-                        backgroundColor: "transparent",
-                        color: "#fff",
-                        "& fieldset": { borderColor: "#fff" },
-                        "&:hover fieldset": {
-                          borderColor: "#fff",
-                          opacity: 0.48,
-                        },
-                        "&.Mui-focused fieldset": { borderColor: "#fff" },
-                      },
-                      input: { color: "#fff" },
-                    }}
-                  />
-                  <Stack color="rgba(255, 255, 255, 1)" sx={{ opacity: 0.48 }}>
-                    Insira sua senha
-                  </Stack>
-                  <TextField
-                    fullWidth
-                    value={senha}
-                    type="password"
-                    placeholder="Insira sua Senha"
-                    onChange={(e) => setSenha(e.target.value)}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        handleLogin();
-                      }
-                    }}
-                    sx={{
-                      mb: "20px",
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: "10px",
-                        backgroundColor: "transparent",
-                        color: "#fff",
-                        "& fieldset": { borderColor: "#fff" },
-                        "&:hover fieldset": {
-                          borderColor: "#fff",
-                          opacity: 0.48,
-                        },
-                        "&.Mui-focused fieldset": { borderColor: "#fff" },
-                      },
-                      input: { color: "#fff" },
-                    }}
-                  />
-                  <Box display="flex" justifyContent="center" mt={2}>
-                    <DefaultaButton
-                      height={45}
-                      onClick={handleLogin}
-                      content={"Avançar"}
-                      widthButton="300px"
-                    />
-                  </Box>
-                  <Stack direction="row" justifyContent="center" pt={4}>
-                    <Typography color="white">É novo por aqui?</Typography>
-                    <Typography>
-                      <Link
-                        underline="none"
-                        component="button"
-                        onClick={goToRegister}
-                        sx={{ color: "#7ed957", fontWeight: "bold", pl: 1 }}
-                      >
-                        Registre-se
-                      </Link>
-                    </Typography>
-                  </Stack>
-                  <Stack justifyContent="center" alignItems={"center"} pt={2}>
-                    <Typography>
-                      <Link
-                        underline="none"
-                        component="button"
-                        onClick={goToRecoveryPassword}
-                        sx={{ color: "#7ed957", fontWeight: "bold" }}
-                      >
-                        Esqueceu sua senha?
-                      </Link>
-                    </Typography>
-                  </Stack>
-                </Stack>
-              </Box>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+                  eius aliquid saepe est nihil! Illum perferendis quaerat unde,
+                  delectus alias quia, optio dolorum corporis ipsa neque
+                  aspernatur, est repellat enim?
+                </Box>
+              </Stack>
+            </Grid>
+            <Grid size={5}>
+              <Stack spacing={2}>
+                <Box
+                  sx={{
+                    backgroundColor: "aqua",
+                    height: "15rem",
+                    width: "30rem",
+                    borderRadius: "2rem",
+                    padding: "3rem",
+                  }}
+                >
+                  Texto 2
+                </Box>
+                <Box
+                  sx={{
+                    backgroundColor: "aqua",
+                    height: "15rem",
+                    width: "30rem",
+                    borderRadius: "2rem",
+                    padding: "3rem",
+                  }}
+                >
+                  Texto 3
+                </Box>
+              </Stack>
             </Grid>
           </Grid>
-          {/* ✅ Overlay de loading */}
-          {loading && (
-            <Box
-              sx={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                zIndex: 9999,
-              }}
-            >
-              <Loading />
-            </Box>
-          )}
         </Box>
         <ToastContainer />
       </main>
