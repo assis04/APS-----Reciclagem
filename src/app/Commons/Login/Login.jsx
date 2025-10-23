@@ -7,14 +7,7 @@ import DefaultaButton from '../Component/ComponentButton/DefaultButton.jsx'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast, ToastContainer } from 'react-toastify'
-import {
-    Box,
-    TextField,
-    Typography,
-    Grid,
-    Link,
-    Stack,
-} from '@mui/material'
+import { Box, TextField, Typography, Grid, Link, Stack } from '@mui/material'
 import Loading from '../Component/Loading/loading'
 import DefaultNavBar from '../Component/ComponetNavBar/DefaultNavBar.jsx'
 
@@ -31,34 +24,56 @@ const LoginPage = () => {
             setLoading(true)
         }, 1000);
     }
-    const handleLogin = async () => {
-        setLoading(true)
 
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const handleLogin = () => {
 
-        try {
-            const response = await fetch(`${apiUrl}/api/usuarios/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email, senha: senha }),
-            });
-
-            if (response.ok) {
-                toast.success('Usuário logado com sucesso!')
-
-                setTimeout(() => {
-                    router.push('/PagesRouter/Home')
-                }, 1000)
-            } else {
-                const errorMsg = await response.text()
-                toast.error(errorMsg)
-                setLoading(false)
-            }
-        } catch (error) {
-            toast.error('Erro ao conectar com o servidor')
-            setLoading(false)
+        if (email != 'thiago') {
+            toast.warning('Dados incorretos!')
+            return
         }
+        if (senha != 'admin') {
+            toast.warning('Dados incorretos!')
+            return
+        }
+        if (email && senha === '') {
+            toast.warning('Dados incorretos!')
+            return
+        }
+        toast.success('Login feito com sucesso!')
+        setTimeout(() => {
+            router.push('/PagesRouter/Home')
+            setLoading(true)
+        }, 1000);
     }
+
+    // const handleLogin = async () => {
+    //     setLoading(true)
+
+    //     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+    //     try {
+    //         const response = await fetch(`${apiUrl}/api/usuarios/login`, {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify({ email: email, senha: senha }),
+    //         });
+
+    //         if (response.ok) {
+    //             toast.success('Usuário logado com sucesso!')
+
+    //             setTimeout(() => {
+    //                 router.push('/PagesRouter/Home')
+    //             }, 1000)
+    //         } else {
+    //             const errorMsg = await response.text()
+    //             toast.error(errorMsg)
+    //             setLoading(false)
+    //         }
+    //     } catch (error) {
+    //         toast.error('Erro ao conectar com o servidor')
+    //         setLoading(false)
+    //     }
+    // }
 
     const goToRegister = () => {
         setLoading(true)
@@ -81,7 +96,7 @@ const LoginPage = () => {
 
         <>
             <header>
-                <DefaultNavBar/>
+                <DefaultNavBar />
             </header>
             <main>
                 <Box
