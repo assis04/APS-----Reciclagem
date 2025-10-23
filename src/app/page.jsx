@@ -14,61 +14,7 @@ import Loading from "./Commons/Component/Loading/loading";
 const HomePage = () => {
   const router = useRouter();
 
-  const [senha, setSenha] = useState("");
-  const [email, setUsuario] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const goToHome = () => {
-    setTimeout(() => {
-      router.push("/PagesRouter/Home");
-      setLoading(true);
-    }, 1000);
-  };
-  const handleLogin = async () => {
-    setLoading(true);
-
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-    try {
-      const response = await fetch(`${apiUrl}/api/usuarios/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email, senha: senha }),
-      });
-
-      if (response.ok) {
-        toast.success("Usuário logado com sucesso!");
-
-        setTimeout(() => {
-          router.push("/PagesRouter/Home");
-        }, 1000);
-      } else {
-        const errorMsg = await response.text();
-        toast.error(errorMsg);
-        setLoading(false);
-      }
-    } catch (error) {
-      toast.error("Erro ao conectar com o servidor");
-      setLoading(false);
-    }
-  };
-
-  const goToRegister = () => {
-    setLoading(true);
-
-    setTimeout(() => {
-      router.push("/PagesRouter/Register");
-      setLoading(true);
-    }, 1000);
-  };
-
-  const goToRecoveryPassword = () => {
-    setLoading(true);
-
-    setTimeout(() => {
-      router.push("/PagesRouter/Password-recovery");
-    }, 1000);
-  };
+  
 
   return (
     <>
