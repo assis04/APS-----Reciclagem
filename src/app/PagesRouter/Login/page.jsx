@@ -1,6 +1,6 @@
 'use client'
 
-import UserPage from "@/app/Commons/Login/Login"
+import UserPage from "@/app/Login/Login"
 
 const UserRouter = () => {
     return (

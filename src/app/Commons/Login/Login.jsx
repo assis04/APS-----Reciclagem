@@ -2,14 +2,14 @@
 
 import '@/app/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import DefaultaButton from '../Component/ComponentButton/DefaultButton.jsx'
+import DefaultaButton from '../Commons/Component/ComponentButton/DefaultButton.jsx'
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast, ToastContainer } from 'react-toastify'
 import { Box, TextField, Typography, Grid, Link, Stack } from '@mui/material'
-import Loading from '../Component/Loading/loading'
-import DefaultNavBar from '../Component/ComponetNavBar/DefaultNavBar.jsx'
+import Loading from '../Commons/Component/Loading/loading.jsx'
+import DefaultNavBar from '../Commons/Component/ComponetNavBar/DefaultNavBar.jsx'
 
 const LoginPage = () => {
     const router = useRouter()

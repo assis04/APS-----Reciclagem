@@ -3,42 +3,64 @@
 import './DefaultNavBar.css'
 import { useRouter } from 'next/navigation'
 
-const DefaultNavBar = () => {
-    const router = useRouter()
+const DefaultNavBar = ({
+  showLogo = true,
+  showLogin = true,
+  showLogout = true,
+  showButton = true,
+  delay = 1000 // opcional, pra controlar o tempo do redirecionamento
+}) => {
+  const router = useRouter()
 
-    const handleLogoClick = (e) => {
-        e.preventDefault() // impede o redirecionamento imediato
-        setTimeout(() => {
-            router.push('/') // redireciona após o delay
-        }, 1000) // tempo em milissegundos (1 segundo)
-    }
-    const handleLoginClick = (e) => {
-        e.preventDefault() // impede o redirecionamento imediato
-        setTimeout(() => {
-            router.push('/PagesRouter/Login') // redireciona após o delay
-        }, 1000) // tempo em milissegundos (1 segundo)
-    }
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    setTimeout(() => {
+      router.push('/')
+    }, delay)
+  }
 
-    return (
-        <>
-            <nav>
-                <ol className="navbar">
-                    <li>
-                        <a href="/" onClick={handleLogoClick}>
-                            <img
-                                className='logo'
-                                src="../Logo-APS 1.png"
-                                alt="imagem com um fone e um celular sendo trocados"
-                            />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/PagesRouter/Login" onClick={handleLoginClick} >Login</a>
-                    </li>
-                </ol>
-            </nav>
-        </>
-    )
+  const handleLoginClick = (e) => {
+    e.preventDefault()
+    setTimeout(() => {
+      router.push('/PagesRouter/Login')
+    }, delay)
+  }
+
+  return (
+    <nav>
+      <ol className="navbar">
+        {showLogo && (
+          <li>
+            <a href="/" onClick={handleLogoClick}>
+              <img
+                className='logo'
+                src="../Logo-APS 1.png"
+                alt="imagem com um fone e um celular sendo trocados"
+              />
+            </a>
+          </li>
+        )}
+
+        {showLogin && (
+          <li>
+            <a href="/PagesRouter/Login" onClick={handleLoginClick}>Login</a>
+          </li>
+        )}
+
+        {showLogout && (
+          <li>
+            <a href="/PagesRouter/Home" onClick={handleLogoClick}>Logout</a>
+          </li>
+        )}
+
+        {showButton && (
+          <li>
+            <button> Novo item </button>
+          </li>
+        )}
+      </ol>
+    </nav>
+  )
 }
 
 export default DefaultNavBar
