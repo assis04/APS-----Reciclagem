@@ -24,33 +24,11 @@ const HomePage = () => {
             setLoading(true);
         }, 1000);
     };
-    const handleLogin = async () => {
-        setLoading(true);
-
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-        try {
-            const response = await fetch(`${apiUrl}/api/usuarios/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: email, senha: senha }),
-            });
-
-            if (response.ok) {
-                toast.success("Usuário logado com sucesso!");
-
-                setTimeout(() => {
-                    router.push("/PagesRouter/Home");
-                }, 1000);
-            } else {
-                const errorMsg = await response.text();
-                toast.error(errorMsg);
-                setLoading(false);
-            }
-        } catch (error) {
-            toast.error("Erro ao conectar com o servidor");
-            setLoading(false);
-        }
+    const goToLogin = () => {
+        setTimeout(() => {
+            router.push("/PagesRouter/Login");
+            setLoading(true);
+        }, 1000);
     };
 
     const goToRegister = () => {
@@ -73,12 +51,13 @@ const HomePage = () => {
     return (
         <>
             <header>
-                <DefaultNavBar />
+                <DefaultNavBar onClick={goToHome} />
             </header>
             <main>
                 <Box
                     sx={{
                         display: "flex",
+                        flexDirection: "column",
                         minWidth: "100vw",
                         height: "calc(100vh - 5rem)",
                         alignItems: "center",
@@ -92,20 +71,21 @@ const HomePage = () => {
                     <Grid
                         container
                         justifyContent={'center'}
-                        alignItems={'center'}
+                        textAlign={'center'}
+                        justifyItems={"i"}
                         width={"60vw"}
-                        gap={2}
+                        gap={4}
                     >
-                        <Grid item size={5}>
+                        <Grid item size={4}>
                             <Stack spacing={2}>
                                 <Box
                                     sx={{
                                         backgroundColor: "#73946B",
-                                        height: "49.6vh",
-                                        width: "25vw",
+                                        width: "25rem",
+                                        height: "26rem",
                                         border: '3px  solid rgb(255,255,255,0.2)',
                                         padding: "3rem",
-                                        borderRadius: 5,
+                                        borderRadius: "3rem",
                                     }}
                                 >
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
@@ -115,14 +95,14 @@ const HomePage = () => {
                                 </Box>
                             </Stack>
                         </Grid>
-                        <Grid item size={5}>
+                        <Grid item size={4}>
                             <Stack spacing={2}>
                                 <Box
                                     sx={{
                                         backgroundColor: "#73946B",
-                                        height: "16rem",
-                                        width: "30rem",
-                                        borderRadius: "2rem",
+                                        width: "25rem",
+                                        height: "12.5rem",
+                                        borderRadius: "3rem",
                                         padding: "3rem",
                                         border: '3px  solid rgb(255,255,255,0.2)',
 
@@ -133,9 +113,9 @@ const HomePage = () => {
                                 <Box
                                     sx={{
                                         backgroundColor: "#73946B",
-                                        height: "15rem",
-                                        width: "30rem",
-                                        borderRadius: "2rem",
+                                        width: "25rem",
+                                        height: "12.5rem",
+                                        borderRadius: "3rem",
                                         padding: "3rem",
                                         border: '3px  solid rgb(255,255,255,0.2)',
 
@@ -146,8 +126,18 @@ const HomePage = () => {
                             </Stack>
                         </Grid>
                     </Grid>
+                    <Box display="flex" justifyContent="center" mt={2}>
+                        <DefaultaButton
+                            height={45}
+                            margin={4}
+                            onClick={goToLogin}
+                            content={'Começar'}
+                            widthButton="300px"
+                        />
+                    </Box>
                 </Box>
                 <ToastContainer />
+
             </main>
             <footer></footer>
         </>

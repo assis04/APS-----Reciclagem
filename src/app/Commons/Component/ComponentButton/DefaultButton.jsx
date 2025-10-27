@@ -5,6 +5,7 @@ import { Button } from "@mui/material"
 const DefaultaButton = ({
     content,
     onClick,
+    margin,
     height = 45,
     borderRadius = '30px',
     widthButton = '200px',
@@ -18,6 +19,7 @@ const DefaultaButton = ({
             onClick={onClick}
             sx={{
                 height: height,
+                marginTop: margin,
                 display: 'flex',
                 color: colorText,
                 fontWeight: 'bold',

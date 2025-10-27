@@ -11,7 +11,7 @@ import { Box, TextField, Typography, Grid, Link, Stack } from '@mui/material'
 import Loading from '../Component/Loading/loading'
 import DefaultNavBar from '../Component/ComponetNavBar/DefaultNavBar.jsx'
 
-const LoginPage = () => {
+const UserPage = () => {
     const router = useRouter()
 
     const [senha, setSenha] = useState('')
@@ -41,7 +41,7 @@ const LoginPage = () => {
         }
         toast.success('Login feito com sucesso!')
         setTimeout(() => {
-            router.push('/PagesRouter/User')
+            router.push('/PagesRouter/Home')
             setLoading(true)
         }, 1000);
     }
@@ -234,4 +234,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default UserPage
