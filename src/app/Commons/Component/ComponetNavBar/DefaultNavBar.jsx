@@ -2,6 +2,8 @@
 
 import './DefaultNavBar.css'
 import { useRouter } from 'next/navigation'
+import DefaultaButton from '../ComponentButton/DefaultButton.jsx'
+
 
 const DefaultNavBar = ({
   showLogo = true,
@@ -25,6 +27,8 @@ const DefaultNavBar = ({
       router.push('/PagesRouter/Login')
     }, delay)
   }
+
+  
 
   return (
     <nav>
@@ -55,7 +59,7 @@ const DefaultNavBar = ({
 
           {showButton && (
             <li>
-              <button> Novo item </button>
+              <DefaultaButton content={"Novo Item"} />
             </li>
           )}
         </div>

@@ -10,6 +10,9 @@ import { toast, ToastContainer } from 'react-toastify'
 import { Box} from '@mui/material'
 import DefaultNavBar from '../Component/ComponetNavBar/DefaultNavBar.jsx'
 
+const popUpNewPost = () => {
+    
+}
 const UserPage = () => {
 
     return (
@@ -24,7 +27,6 @@ const UserPage = () => {
                         display: 'flex',
                         minWidth: '100vw',
                         height: 'calc(100vh - 5rem)',
-                        alignItems: 'center',
                         justifyContent: 'center',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
@@ -32,6 +34,7 @@ const UserPage = () => {
                         position: 'relative', // necessário para overlay funcionar
                     }}
                 >
+                    <DefaultaButton content={"Novo Item"} margin={"1rem"} onClick={}/>
                     
                 </Box>
                 <ToastContainer />
