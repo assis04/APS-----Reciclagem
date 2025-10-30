@@ -1,13 +1,13 @@
 'use client'
 
-import UserPage from "@/app/Login/Login"
+import LoginPage from "@/app/Commons/Login/Login"
 
-const UserRouter = () => {
+const LoginRouter = () => {
     return (
         <>
-            <UserPage />
+            <LoginPage />
         </>
     )
 }
 
-export default UserRouter
+export default LoginRouter

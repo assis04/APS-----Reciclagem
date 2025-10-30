@@ -40,24 +40,25 @@ const DefaultNavBar = ({
             </a>
           </li>
         )}
+        <div className="menuButtons">
+          {showLogin && (
+            <li>
+              <a href="/PagesRouter/Login" onClick={handleLoginClick}>Login</a>
+            </li>
+          )}
 
-        {showLogin && (
-          <li>
-            <a href="/PagesRouter/Login" onClick={handleLoginClick}>Login</a>
-          </li>
-        )}
+          {showLogout && (
+            <li>
+              <a href="/PagesRouter/Home" onClick={handleLogoClick}>Logout</a>
+            </li>
+          )}
 
-        {showLogout && (
-          <li>
-            <a href="/PagesRouter/Home" onClick={handleLogoClick}>Logout</a>
-          </li>
-        )}
-
-        {showButton && (
-          <li>
-            <button> Novo item </button>
-          </li>
-        )}
+          {showButton && (
+            <li>
+              <button> Novo item </button>
+            </li>
+          )}
+        </div>
       </ol>
     </nav>
   )

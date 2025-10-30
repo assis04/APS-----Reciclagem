@@ -1,8 +1,9 @@
-nav{
+nav {
     background-color: #73946B;
     border-radius: 0rem 0rem 2rem 0rem;
 }
-.navbar{
+
+.navbar {
     display: flex;
     flex-direction: row;
     list-style: none;
@@ -11,7 +12,14 @@ nav{
     margin: 0rem 25vw 0rem 25vw;
     height: 5rem;
 }
-.logo{
+
+.logo {
     display: flex;
     height: 4rem;
+}
+
+.menuButtons {
+    display: flex; 
+    flex-direction: row;
+    gap: 1.5rem;
 }
