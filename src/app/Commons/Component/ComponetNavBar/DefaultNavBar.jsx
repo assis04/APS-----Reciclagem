@@ -3,6 +3,7 @@
 import './DefaultNavBar.css'
 import { useRouter } from 'next/navigation'
 import DefaultaButton from '../ComponentButton/DefaultButton.jsx'
+import { Stack } from '@mui/material'
 
 
 const DefaultNavBar = ({
@@ -28,7 +29,7 @@ const DefaultNavBar = ({
     }, delay)
   }
 
-  
+
 
   return (
     <nav>
@@ -44,25 +45,19 @@ const DefaultNavBar = ({
             </a>
           </li>
         )}
-        <div className="menuButtons">
+        <Stack direction={'row'} justifyContent={'center'} alignItems={'center'} spacing={5}>
           {showLogin && (
-            <li>
-              <a href="/PagesRouter/Login" onClick={handleLoginClick}>Login</a>
-            </li>
+            <a href="/PagesRouter/Login" onClick={handleLoginClick}>Login</a>
           )}
 
           {showLogout && (
-            <li>
-              <a href="/PagesRouter/Home" onClick={handleLogoClick}>Logout</a>
-            </li>
+            <a href="/PagesRouter/Home" onClick={handleLogoClick}>Logout</a>
           )}
 
           {showButton && (
-            <li>
-              <DefaultaButton content={"Novo Item"} />
-            </li>
+            <DefaultaButton content={"Novo Item"} />
           )}
-        </div>
+        </Stack>
       </ol>
     </nav>
   )
