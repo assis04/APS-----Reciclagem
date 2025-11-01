@@ -5,12 +5,11 @@ import { useRouter } from 'next/navigation'
 import DefaultaButton from '../ComponentButton/DefaultButton.jsx'
 import { Stack } from '@mui/material'
 
-
 const DefaultNavBar = ({
+  onClick = {},
   showLogo = true,
   showLogin = true,
   showLogout = true,
-  showButton = true,
   delay = 1000 // opcional, pra controlar o tempo do redirecionamento
 }) => {
   const router = useRouter()
@@ -52,10 +51,6 @@ const DefaultNavBar = ({
 
           {showLogout && (
             <a href="/PagesRouter/Home" onClick={handleLogoClick}>Logout</a>
-          )}
-
-          {showButton && (
-            <DefaultaButton content={"Novo Item"} />
           )}
         </Stack>
       </ol>
