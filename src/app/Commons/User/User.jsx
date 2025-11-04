@@ -46,7 +46,6 @@ const UserPage = () => {
         console.error("Erro ao buscar produtos:", error);
       }
     };
-
     fetchProdutos();
   }, []);
 
@@ -111,11 +110,7 @@ const UserPage = () => {
             position: "relative",
           }}
         >
-          <DefaultButton
-            content="Novo Item"
-            margin="1rem"
-            onClick={handleOpen}
-          />
+          <DefaultButton content="Novo Item" margin="1rem" onClick={handleOpen} />
 
           {/* 🧱 Lista de produtos */}
           <Box
