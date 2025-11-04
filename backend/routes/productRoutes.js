@@ -1,10 +1,15 @@
 import express from "express";
 import multer from "multer";
+<<<<<<< HEAD
 import mongoose from "mongoose";
+=======
+import path from "path";
+>>>>>>> 5c7fc234ddc6c2208f4895a05ba4f5a3c841f506
 import Product from "../models/Product.js";
 
 const router = express.Router();
 
+<<<<<<< HEAD
 // 📦 Armazenamento temporário em memória
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -55,10 +60,27 @@ router.post("/", upload.single("imagem"), async (req, res) => {
 });
 
 // 📥 Listar produtos
+=======
+// 📦 Configuração do Multer para salvar imagens
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, `${uniqueSuffix}${path.extname(file.originalname)}`);
+  },
+});
+
+const upload = multer({ storage });
+
+// 📋 GET - listar todos os produtos
+>>>>>>> 5c7fc234ddc6c2208f4895a05ba4f5a3c841f506
 router.get("/", async (req, res) => {
   try {
     const produtos = await Product.find();
     res.json(produtos);
+<<<<<<< HEAD
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Erro ao buscar produtos" });
@@ -86,6 +108,29 @@ router.get("/imagem/:id", async (req, res) => {
   } catch (error) {
     console.error("❌ Erro ao buscar imagem:", error);
     res.status(500).json({ error: "Erro ao buscar imagem" });
+=======
+  } catch (err) {
+    res.status(500).json({ message: "Erro ao buscar produtos", error: err });
+  }
+});
+
+// ➕ POST - cadastrar novo produto
+router.post("/", upload.single("imagem"), async (req, res) => {
+  try {
+    const { nome, descricao } = req.body;
+    const imagemPath = req.file ? `uploads/${req.file.filename}` : null;
+
+    const novoProduto = new Product({
+      nome,
+      descricao,
+      imagem: imagemPath,
+    });
+
+    const salvo = await novoProduto.save();
+    res.status(201).json(salvo);
+  } catch (err) {
+    res.status(500).json({ message: "Erro ao cadastrar produto", error: err });
+>>>>>>> 5c7fc234ddc6c2208f4895a05ba4f5a3c841f506
   }
 });
 
