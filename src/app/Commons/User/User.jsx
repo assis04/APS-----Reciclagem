@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import DefaultNavBar from "../Component/ComponetNavBar/DefaultNavBar.jsx";
 import DefaultButton from "../Component/ComponentButton/DefaultButton.jsx";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Modal,
@@ -17,62 +17,75 @@ import {
   Alert,
 } from "@mui/material";
 
+const API_URL = "http://localhost:5000/api/produtos"; // ✅ backend
+
 const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const handleCloseSnackbar = () => setOpenSnackbar(false);
-  const [openDetalhes, setOpenDetalhes] = useState(false);
-  const [produtoSelecionado, setProdutoSelecionado] = useState(null);
   const [produtos, setProdutos] = useState([]);
 
   const [produto, setProduto] = useState({
     nome: "",
     descricao: "",
-    preco: "",
     imagem: null,
   });
 
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleCloseSnackbar = () => setOpenSnackbar(false);
+
+  // 🔄 Buscar produtos ao carregar a página
+  useEffect(() => {
+    const fetchProdutos = async () => {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        setProdutos(data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    };
+    fetchProdutos();
+  }, []);
+
+  // 🖊 Atualiza os campos de texto
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProduto({ ...produto, [name]: value });
   };
 
+  // 📸 Atualiza a imagem selecionada
   const handleImageChange = (e) => {
     setProduto({ ...produto, imagem: e.target.files[0] });
   };
 
-  const handleAbrirDetalhes = (produto) => {
-    setProdutoSelecionado(produto);
-    setOpenDetalhes(true);
-  };
-
-  const handleFecharDetalhes = () => {
-    setOpenDetalhes(false);
-    setProdutoSelecionado(null);
-  };
-
-  const handleSubmit = (e) => {
+  // 💾 Envia o produto para o backend
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleCadastrarProduto(produto);
-    setProduto({
-      nome: "",
-      descricao: "",
-      preco: "",
-      imagem: null,
-    });
-    handleClose();
-  };
 
-  const handleCadastrarProduto = (produto) => {
-    setProdutos((prevProdutos) => {
-      const novos = [...prevProdutos, produto];
-      localStorage.setItem("produtos", JSON.stringify(novos)); // Salva localmente
-      return novos;
-    });
-    console.log("Produto cadastrado:", produto);
-    setOpenSnackbar(true);
+    try {
+      const formData = new FormData();
+      formData.append("nome", produto.nome);
+      formData.append("descricao", produto.descricao);
+      if (produto.imagem) formData.append("imagem", produto.imagem);
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) {
+        const novoProduto = await res.json();
+        setProdutos((prev) => [...prev, novoProduto]);
+        setProduto({ nome: "", descricao: "", imagem: null });
+        setOpen(false);
+        setOpenSnackbar(true);
+      } else {
+        console.error("Erro ao cadastrar produto");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar produto:", error);
+    }
   };
 
   return (
@@ -80,6 +93,7 @@ const UserPage = () => {
       <header>
         <DefaultNavBar showLogin={false} onClick={handleOpen} />
       </header>
+
       <main>
         <Box
           sx={{
@@ -95,13 +109,9 @@ const UserPage = () => {
             position: "relative",
           }}
         >
-          <DefaultButton
-            content="Novo Item"
-            margin="1rem"
-            onClick={handleOpen}
-          />
+          <DefaultButton content="Novo Item" margin="1rem" onClick={handleOpen} />
 
-          {/* Lista de produtos cadastrados */}
+          {/* 🧱 Lista de produtos */}
           <Box
             sx={{
               display: "flex",
@@ -115,7 +125,6 @@ const UserPage = () => {
             {produtos.map((item, index) => (
               <Box
                 key={index}
-                onClick={() => handleAbrirDetalhes(item)}
                 sx={{
                   width: 250,
                   p: 3,
@@ -128,10 +137,9 @@ const UserPage = () => {
                   "&:hover": { transform: "scale(1.03)" },
                 }}
               >
-                {/* Mostra a imagem, se houver */}
                 {item.imagem && (
                   <img
-                    src={URL.createObjectURL(item.imagem)}
+                    src={`http://localhost:5000/${item.imagem}`}
                     alt={item.nome}
                     style={{
                       width: "100%",
@@ -150,11 +158,8 @@ const UserPage = () => {
             ))}
           </Box>
 
-          <Modal
-            sx={{ justifyContent: "center", alignItems: "center" }}
-            open={open}
-            onClose={handleClose}
-          >
+          {/* 📦 Modal para cadastrar produto */}
+          <Modal open={open} onClose={handleClose}>
             <Box
               component="form"
               onSubmit={handleSubmit}
@@ -173,7 +178,6 @@ const UserPage = () => {
               }}
             >
               <Stack spacing={2}>
-                {/* Campo: Nome do Produto */}
                 <TextField
                   name="nome"
                   label="Nome do Produto"
@@ -181,12 +185,8 @@ const UserPage = () => {
                   onChange={handleChange}
                   fullWidth
                   required
-                  sx={{
-                    color: "white",
-                  }}
                 />
 
-                {/* Campo: Descrição */}
                 <TextField
                   name="descricao"
                   label="Descrição"
@@ -197,10 +197,8 @@ const UserPage = () => {
                   rows={3}
                 />
 
-                {/* Botão para enviar imagem */}
                 <Button variant="contained" component="label">
                   Enviar Imagem
-                  {/* O input "file" fica escondido dentro do botão */}
                   <input
                     type="file"
                     accept="image/*"
@@ -209,105 +207,27 @@ const UserPage = () => {
                   />
                 </Button>
 
-                {/* Exibe o nome da imagem selecionada */}
                 {produto.imagem && (
-                  <Typography variant="body2" color="text.secondary">
-                    Imagem selecionada: {produto.imagem.name}
+                  <Typography variant="body2">
+                    Imagem: {produto.imagem.name}
                   </Typography>
                 )}
 
-                {/* Botão de envio do formulário */}
                 <Button type="submit" variant="contained" color="primary">
                   Cadastrar
                 </Button>
               </Stack>
             </Box>
           </Modal>
-          <Modal
-            open={openDetalhes}
-            onClose={handleFecharDetalhes}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                backgroundColor: "#DDE2A8",
-                borderRadius: 4,
-                boxShadow: 24,
-                width: "70%",
-                maxWidth: 900,
-                height: 500,
-                p: 4,
-                gap: 4,
-              }}
-            >
-              {/* ESQUERDA: Imagem */}
-              <Box
-                sx={{
-                  flex: 1,
-                  backgroundColor: "#73946B",
-                  borderRadius: 3,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {produtoSelecionado?.imagem ? (
-                  <img
-                    src={URL.createObjectURL(produtoSelecionado.imagem)}
-                    alt={produtoSelecionado.nome}
-                    style={{
-                      width: "90%",
-                      height: "90%",
-                      objectFit: "cover",
-                      borderRadius: "12px",
-                    }}
-                  />
-                ) : (
-                  <Typography color="white">Sem imagem disponível</Typography>
-                )}
-              </Box>
 
-              {/* DIREITA: Detalhes */}
-              <Box
-                sx={{
-                  flex: 1,
-                  backgroundColor: "#A8DDA0",
-                  borderRadius: 5,
-                  p: 3,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  
-                }}
-              >
-                <Typography variant="h4" fontWeight="bold" mb={2}>
-                  {produtoSelecionado?.nome}
-                </Typography>
-                <Typography variant="body1" mb={3}>
-                  {produtoSelecionado?.descricao || "Sem descrição"}
-                </Typography>
-                <DefaultButton content={"Tenho interesse"}/>
-              </Box>
-            </Box>
-          </Modal>
+          {/* 🔔 Snackbar */}
           <Snackbar
             open={openSnackbar}
-            autoHideDuration={3000} 
+            autoHideDuration={3000}
             onClose={handleCloseSnackbar}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }} // posição
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
-            {/* Alerta visual dentro da snackbar */}
-            <Alert
-              onClose={handleCloseSnackbar}
-              severity="success" 
-              sx={{ width: "100%" }}
-            >
+            <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%" }}>
               Produto cadastrado com sucesso!
             </Alert>
           </Snackbar>
