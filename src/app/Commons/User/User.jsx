@@ -18,15 +18,7 @@ import {
   Alert,
 } from "@mui/material";
 
-<<<<<<< HEAD
 const API_URL = `${API_BASE_URL}/produtos`; // ✅ backend
-=======
-<<<<<<< HEAD
-const API_URL = `${API_BASE_URL}/produtos`; // ✅ backend
-=======
-const API_URL = "http://localhost:5000/api/produtos"; // ✅ backend
->>>>>>> 5c7fc234ddc6c2208f4895a05ba4f5a3c841f506
->>>>>>> dc7dee337d8b72856c04793d158b089d9af89946
 
 const UserPage = () => {
   const [open, setOpen] = useState(false);
@@ -47,28 +39,13 @@ const UserPage = () => {
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
-<<<<<<< HEAD
         const res = await fetch(`${API_BASE_URL}/produtos`);
-=======
-<<<<<<< HEAD
-        const res = await fetch(`${API_BASE_URL}/produtos`);
-=======
-        const res = await fetch(API_URL);
->>>>>>> 5c7fc234ddc6c2208f4895a05ba4f5a3c841f506
->>>>>>> dc7dee337d8b72856c04793d158b089d9af89946
         const data = await res.json();
         setProdutos(data);
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
       }
     };
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 5c7fc234ddc6c2208f4895a05ba4f5a3c841f506
->>>>>>> dc7dee337d8b72856c04793d158b089d9af89946
     fetchProdutos();
   }, []);
 
@@ -133,7 +110,11 @@ const UserPage = () => {
             position: "relative",
           }}
         >
-          <DefaultButton content="Novo Item" margin="1rem" onClick={handleOpen} />
+          <DefaultButton
+            content="Novo Item"
+            margin="1rem"
+            onClick={handleOpen}
+          />
 
           {/* 🧱 Lista de produtos */}
           <Box
@@ -163,16 +144,7 @@ const UserPage = () => {
               >
                 {item.imagem && (
                   <img
-<<<<<<< HEAD
                     src={`http://localhost:5000/api/produtos/imagem/${item.imagem}`}
-=======
-<<<<<<< HEAD
-                    src={`http://localhost:5000/api/produtos/imagem/${item.imagem}`}
-=======
-                    src={`http://localhost:5000/${item.imagem}`}
->>>>>>> 5c7fc234ddc6c2208f4895a05ba4f5a3c841f506
->>>>>>> dc7dee337d8b72856c04793d158b089d9af89946
-                    alt={item.nome}
                     style={{
                       width: "100%",
                       height: 150,
@@ -260,21 +232,11 @@ const UserPage = () => {
             onClose={handleCloseSnackbar}
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> dc7dee337d8b72856c04793d158b089d9af89946
             <Alert
               onClose={handleCloseSnackbar}
               severity="success"
               sx={{ width: "100%" }}
             >
-<<<<<<< HEAD
-=======
-=======
-            <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: "100%" }}>
->>>>>>> 5c7fc234ddc6c2208f4895a05ba4f5a3c841f506
->>>>>>> dc7dee337d8b72856c04793d158b089d9af89946
               Produto cadastrado com sucesso!
             </Alert>
           </Snackbar>
