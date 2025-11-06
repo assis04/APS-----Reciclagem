@@ -24,6 +24,8 @@ const UserPage = () => {
   const [open, setOpen] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [produtos, setProdutos] = useState([]);
+  const [openDetalhes, setOpenDetalhes] = useState(false);
+  const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
   const [produto, setProduto] = useState({
     nome: "",
@@ -34,6 +36,11 @@ const UserPage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleCloseSnackbar = () => setOpenSnackbar(false);
+
+  const handleOpenDetalhes = (produto) => {
+    setProdutoSelecionado(produto);
+    setOpenDetalhes(true);
+  };
 
   // 🔄 Buscar produtos ao carregar a página
   useEffect(() => {
@@ -130,6 +137,7 @@ const UserPage = () => {
             {produtos.map((item, index) => (
               <Box
                 key={index}
+                onClick={() => handleOpenDetalhes(item)}
                 sx={{
                   width: 250,
                   p: 3,
@@ -144,7 +152,7 @@ const UserPage = () => {
               >
                 {item.imagem && (
                   <img
-                    src={`http://localhost:5000/api/produtos/imagem/${item.imagem}`}
+                    src={`${API_BASE_URL}/produtos/imagem/${item.imagem}`}
                     style={{
                       width: "100%",
                       height: 150,
@@ -162,6 +170,55 @@ const UserPage = () => {
               </Box>
             ))}
           </Box>
+
+          <Modal open={openDetalhes} onClose={() => setOpenDetalhes(false)}>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                bgcolor: "white",
+                color: "black",
+                p: 4,
+                borderRadius: 2,
+                boxShadow: 24,
+                width: 400,
+                textAlign: "center",
+              }}
+            >
+              {produtoSelecionado && (
+                <>
+                  {produtoSelecionado.imagem && (
+                    <img
+                      src={`${API_BASE_URL}/produtos/imagem/${produtoSelecionado.imagem}`}
+                      alt={produtoSelecionado.nome}
+                      style={{
+                        width: "100%",
+                        height: 200,
+                        objectFit: "cover",
+                        borderRadius: "8px",
+                        marginBottom: "1rem",
+                      }}
+                    />
+                  )}
+                  <Typography variant="h5" gutterBottom>
+                    {produtoSelecionado.nome}
+                  </Typography>
+                  <Typography variant="body1">
+                    {produtoSelecionado.descricao}
+                  </Typography>
+                  <Button
+                    sx={{ mt: 2 }}
+                    variant="contained"
+                    onClick={() => setOpenDetalhes(false)}
+                  >
+                    Fechar
+                  </Button>
+                </>
+              )}
+            </Box>
+          </Modal>
 
           {/* 📦 Modal para cadastrar produto */}
           <Modal open={open} onClose={handleClose}>
